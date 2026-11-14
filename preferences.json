@@ -1,0 +1,38 @@
+[
+  {
+    "property": "mod.diafolders.border",
+    "label": "Show subtle outline around open folders",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "mod.diafolders.nested",
+    "label": "Give nested folders their own lighter container",
+    "type": "checkbox",
+    "defaultValue": true
+  },
+  {
+    "property": "mod.diafolders.collapsed_box",
+    "label": "Also box collapsed folders",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.diafolders.background",
+    "label": "Container background (any CSS color)",
+    "type": "string",
+    "placeholder": "e.g: rgba(255,255,255,0.08)"
+  },
+  {
+    "property": "mod.diafolders.radius",
+    "label": "Container corner radius",
+    "type": "string",
+    "placeholder": "e.g: 14px"
+  },
+  {
+    "property": "mod.diafolders.gap",
+    "label": "Vertical gap between containers",
+    "type": "string",
+    "placeholder": "e.g: 4px"
+  }
+]

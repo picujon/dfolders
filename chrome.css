@@ -1,0 +1,69 @@
+/* Dia Folders — a Zen mod
+   Open folders render as one rounded container holding the
+   header, tabs and any sub-folders (Dia-style). */
+
+:root {
+  --diafolders-bg: var(--mod-diafolders-background, color-mix(in srgb, white 9%, transparent));
+  --diafolders-bg-nested: color-mix(in srgb, white 6%, transparent);
+  --diafolders-radius: var(--mod-diafolders-radius, 14px);
+  --diafolders-gap: var(--mod-diafolders-gap, 4px);
+  --diafolders-outline: color-mix(in srgb, white 6%, transparent);
+}
+
+/* ---------- Open folder = container ---------- */
+zen-folder:not([collapsed]) {
+  background: var(--diafolders-bg) !important;
+  border-radius: var(--diafolders-radius) !important;
+  margin-block: var(--diafolders-gap) !important;
+  padding: 2px 4px 6px !important;
+  overflow: clip;
+
+  /* keep header and children visually inside the same box */
+  & > .tab-group-label-container {
+    background: transparent !important;
+    margin-inline: 0 !important;
+  }
+  & > .tab-group-container {
+    margin: 0 !important;
+    padding-inline: 0 !important;
+    border: none !important;
+  }
+}
+
+/* ---------- Optional outline ---------- */
+@media (-moz-pref("mod.diafolders.border")) {
+  zen-folder:not([collapsed]) {
+    box-shadow: inset 0 0 0 1px var(--diafolders-outline) !important;
+  }
+}
+
+/* ---------- Nested folders ---------- */
+@media (-moz-pref("mod.diafolders.nested")) {
+  zen-folder:not([collapsed]) zen-folder:not([collapsed]) {
+    background: var(--diafolders-bg-nested) !important;
+    border-radius: calc(var(--diafolders-radius) - 4px) !important;
+    margin-block: 2px !important;
+  }
+}
+@media not (-moz-pref("mod.diafolders.nested")) {
+  zen-folder:not([collapsed]) zen-folder:not([collapsed]) {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+/* ---------- Optional: box collapsed folders too ---------- */
+@media (-moz-pref("mod.diafolders.collapsed_box")) {
+  zen-folder[collapsed] {
+    background: var(--diafolders-bg) !important;
+    border-radius: var(--diafolders-radius) !important;
+    margin-block: var(--diafolders-gap) !important;
+    padding: 2px 4px !important;
+  }
+}
+
+/* ---------- Tabs inside the container ---------- */
+zen-folder:not([collapsed]) .tabbrowser-tab {
+  border-radius: calc(var(--diafolders-radius) - 4px);
+}
